@@ -1,8 +1,10 @@
 import levels as lvl
 
 
-SIMPLE_OPERATIONS_SELECT = 1
-INTEGRAL_SQUARES_SELECT = 2
+LEVELS = [1, 2]
+
+LEVEL_DIGITS = {1: "simple operations with numbers 2-9",
+                2: "integral squares of 11-29"}
 
 
 def saving_the_result(name: str, correct_answers: int, level: int) -> None:
@@ -13,26 +15,25 @@ def saving_the_result(name: str, correct_answers: int, level: int) -> None:
     :param level: the level of complexity of the examples
     """
     with open("results.txt", "a") as file:
-        if level == SIMPLE_OPERATIONS_SELECT:
-            file.write(f"{name}: {correct_answers}/5 in level 1 (simple operations with numbers 2-9).\n")
-        else:
-            file.write(f"{name}: {correct_answers}/5 in level 2 (integral squares of 11-29).\n")
+        if level in LEVELS:
+            file.write(f"{name}: {correct_answers}/5 in level {level} ({LEVEL_DIGITS[level]}).\n")
 
 
 def main() -> None:
     correct_answers = 0
 
     while True:
-        print("Which level do you want? Enter a number:",
-              "1 - simple operations with numbers 2-9",
-              "2 - integral squares of 11-29", sep="\n")
+        print("Which level do you want? Enter a number:")
+
+        for key in LEVEL_DIGITS:
+            print(f"{key} - {LEVEL_DIGITS[key]}")
 
         level = lvl.checking_the_integer_value()
 
-        if level == SIMPLE_OPERATIONS_SELECT:
+        if level == LEVELS[0]:
             correct_answers = lvl.simple_level(correct_answers)
             break
-        elif level == INTEGRAL_SQUARES_SELECT:
+        elif level == LEVELS[1]:
             correct_answers = lvl.complex_level(correct_answers)
             break
         else:
