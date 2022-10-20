@@ -40,10 +40,10 @@ def main() -> None:
             print("Incorrect format.")
 
     print(f"Your mark is {correct_answers}/5.")
-    permission = input("Would you like to save your result to the file? Enter yes or no.")
+    permission = input("Would you like to save your result to the file? Enter yes or no. ")
 
     if permission.lower() in ["yes", "y"]:
-        name = input("What is your name?")
+        name = input("What is your name? ")
         saving_the_result(name, correct_answers, level)
         print('The results are saved in "results.txt".')
 
